@@ -1,0 +1,20 @@
+Student Name: Fadil Jemal
+
+Status Report # 1
+
+Date: 04/13/2018
+
+What have you completed since the last report?
+
+This is my first report which includes the meeting and some research I have done. 
+After class meeting and briefed about both classes procedures I started reading and start playing with
+ansible playbooks. After I read the ansible doc. which provided on slack and some other additional sites, I wrote first
+ansible playbook which spins instances on EC2. This will fjemal/nti-460.
+
+what do you plan to complete by the next report?
+By the next report I will read more about Ansible and playbooks.
+
+what is getting in your way? 
+The first thing getting in my way is that before I start reading
+about ansible I was so worried since I never used it before. I thought it needs hard coding, since I'm not 
+coder. After I start reading it looks great since this the first time I read and use ansible. 
