@@ -1,0 +1,16 @@
+Student Name: Fadil Jemal
+Status Report # 3
+Date: 4/24/18
+
+What have you completed since the last report?
+
+We met on Saturday with the team to setup all machines to configuration and to install
+software on each machine, but due to incompatible software with our BladeCenter, we couldn't finish
+the installation and configuration. At the last David come and promised to set up the new machine if possible.
+
+What do you plan to complete by the next report?
+By the next report, if I get a new machine to the place where I get easy, I will install the software and 
+prepare script which installs open stack and some software using ansible.
+
+What is getting in your way?
+Still have limited access to the cisco room, since don't have an access key.
