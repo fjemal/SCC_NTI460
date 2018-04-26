@@ -1,0 +1,12 @@
+Student Name: Fadil
+Status Report #4
+Date: 4/25/2018
+
+What have you completed since the last report?
+I created the iscsi on our target machine by creating 1000 GB of LVM from more than 9000 GB
+it has on sdb for the shared storage for clients.
+
+What do you plan to complete by the next report?
+I will create ACL(Access Conrol Lists) which restricts access to resources, LUNS(logical unit number) define exportted
+resources and Portals which define ways to reach the exported resources; consist in pairs of IP address and ports.
+What is getting in your way? for now cisco lab looks great having good access to it.
