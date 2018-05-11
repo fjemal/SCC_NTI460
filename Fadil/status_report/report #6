@@ -1,0 +1,11 @@
+Student Name: Fadil Jemal
+Status Report # 6
+Date: 5/11/2018
+
+What have you completed since the last report?
+After meeting on Saturday, the plan we put forward to be done in this week was unsuccessful. The network was not set
+so, we are running behind the schedule.
+
+What do you plan to complete by the next report?
+we tried to fix the network issues and go from there, installing and configuring openstack using ansible and configuring the iscsi.
+What is getting in your way? configuring the vlans' and configuring the network is our main problem right now.
