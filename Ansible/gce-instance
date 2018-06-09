@@ -1,0 +1,25 @@
+---
+- name: Create instance(s)
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars:
+    service_account_email: 382028023478-compute@developer.gserviceacco
+unt.com]
+   # service_account_email: fadiljemal@nti460-204719.iam.gserviceaccou
+nt.com
+    credentials_file: /root/key.json
+    project_id: nti460-204719
+    machine_type: f1-micro
+    image: centos-7
+  tasks:
+   - name: Launch instances
+     gce:
+         instance_names: ansible-1
+         machine_type: "{{ machine_type }}"
+         image: "{{ image }}"
+         service_account_email: "{{ service_account_email }}"
+         credentials_file: "{{ credentials_file }}"
+         project_id: "{{ project_id }}"
+~                                                                     
+~                                                              
