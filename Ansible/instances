@@ -1,0 +1,24 @@
+##Simple playbook to spin new instances
+
+- name: create instance
+  hosts: localhost
+  gather_facts: False
+  vars:
+     keypair: ansiblekey
+     instance_type: t2.micro
+     image: ami-223f945a
+     region: us-west-2
+  tasks:
+    - name: Launch instances
+      ec2:
+        key_name: "{{ keypair }}"
+        group: default
+        instance_type: "{{ instance_type }}"
+        image: "{{ image }}"
+        wait: true
+        region: "{{ region }}"
+        aws_access_key: AKIAJASSHNR5IIZAB4XQ
+        aws_secret_key: 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
+      register: ec2
+    - name: Print all ec2 variables
+      debug: var=ec2
