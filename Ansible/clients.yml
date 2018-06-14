@@ -1,0 +1,82 @@
+---
+- name: Create instance(s)
+  hosts: localhost
+  gather_facts: no
+  connection: local
+  vars:
+    service_account_email: 382028023478-compute@developer.gserviceaccount.com]
+    # service_account_email: fadiljemal@nti460-204719.iam.gserviceaccount.com
+    credentials_file: /root/key.json
+    project_id: nti460-204719
+    
+    image: centos-7
+    state: active
+    machine_type: n1-standard-1
+    
+    hosts_b:
+      - nfs
+      - ldap
+       
+    hosts_c:
+      - client
+
+  tasks:
+    - name: Launch instances
+      gce:
+          instance_names: "{{ hosts_b|join(',') }}"
+          machine_type: "{{ machine_type }}"
+          image: "{{ image }}"
+          service_account_email: "{{ service_account_email }}"
+          credentials_file: "{{ credentials_file }}"
+          project_id: "{{ project_id }}"
+          
+          state: "{{ state }}"
+      register: gce
+
+    - name: Add host to group
+      add_host: hostname={{ item.public_ip }} groupname=hosts_b
+      with_items: "{{gce.instance_data | default({})}}"
+      
+    - name: Launch instances
+      gce:
+          instance_names: "{{ hosts_c|join(',') }}"
+          machine_type: "{{ machine_type }}"
+          image: "{{ image }}"
+          service_account_email: "{{ service_account_email }}"
+          credentials_file: "{{ credentials_file }}"
+          project_id: "{{ project_id }}"
+          state: "{{ state }}"
+         # metadata: '{"startup-script" : "curl https://raw.githubusercontent.com/fjemal/NTI-310/blob/master/automation_scripts/ldap-server-auto > ldap.sh; chmod +x ./ldap.sh; ./ldap.sh"}'
+            
+          state: "{{ state }}"
+      register: gce
+     # when: hosts_c is defined
+
+    - name: Add host to group
+      add_host: dest=/etc/ansible/hosts hostname={{ item.public_ip }} groupname=hosts_c
+      with_items: "{{gce.instance_data | default({})}}"
+      when: gce.instance_data is defined
+      #when: hostvars[item].ansible_default_ipv4.address is defined
+   
+    - name: Wait for SSH to come up
+      wait_for: host={{ item.public_ip }} port=22 delay=10 timeout=60
+      with_items: "{{gce.instance_data | default({})}}"
+      when: gce.instance_data is defined
+    
+   # - name: range
+    #  prompt: echo "Enter client number you want to add (e.g. 1..6)"
+     # private: False
+      #default: "1"
+   
+    - name: Set Client id variables
+      set_fact:
+      start: "{{ range.split('..')[0] }}"
+      stop: "{{ range.split('..')[-1] }}"
+      with_sequence: "start={{start}} end={{stop}} "
+   
+  gather_facts: False
+  tasks:
+    - name: echo sequence
+     shell: echo "cmd"
+     
+    
